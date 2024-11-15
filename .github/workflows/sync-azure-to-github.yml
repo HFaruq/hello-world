@@ -1,0 +1,17 @@
+name: Sync Azure to GitHub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Azure Repo
+        run: |
+          git clone https://dev.azure.com/faruqhassaan/PublicProject/_git/hello-world.git azure-repo
+          cd azure-repo
+          git remote add github https://github.com/HFaruq/hello-world.git
+          git push github --mirror
